@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use App\Http\Transformer\QuestionTransformer;
 
 class QuestionsController extends Controller
 {
@@ -12,14 +13,14 @@ class QuestionsController extends Controller
     $from_date = $request->input('from_date');
     $to_date = $request->input('to_date');
 
-    $questions = Question::whereBetween('created_at', [$from_date, $to_date])->get();
-    return $questions;
+    $questions = Question::whereBetween('created_at', [$from_date, $to_date])->orderBy('created_at', 'asc')->get();
+    return $this->collection($questions, new QuestionTransformer);
   }
 
   public function store(Request $request)
   { 
     $question = Question::create($this->question_param($request)['question']);
-    return $question;
+    return $this->item($question, new QuestionTransformer);
   }
 
   private function question_param(Request $request){

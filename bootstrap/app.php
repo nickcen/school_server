@@ -81,6 +81,15 @@ $app->middleware([
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register(Dingo\Api\Provider\LumenServiceProvider::class);
+
+$app['Dingo\Api\Transformer\Factory']->setAdapter(function ($app) {
+  $fractal = new League\Fractal\Manager;
+
+  $fractal->setSerializer(new App\Http\Serializer\CustomSerializer);
+
+  return new Dingo\Api\Transformer\Adapter\Fractal($fractal);
+});
 
 /*
 |--------------------------------------------------------------------------

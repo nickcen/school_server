@@ -9,8 +9,13 @@ class QuestionsSeeder extends Seeder
   public function run()
   {
     Question::truncate();
-    for($i = 0; $i < 20; $i++){
-      Question::create([ 'kind' => 'math', 'question' => 'this is book ' . $i, 'answer' => 'author ' . $i, 'result' => $i % 5 + 1, 'is_correct' => true]);
+    for($i = 0; $i < 300; $i++){
+      $start = strtotime("1 February 2018");
+      $end = strtotime("22 February 2018");
+
+      $timestamp = mt_rand($start, $end);
+
+      Question::create([ 'kind' => $i % 2 == 1 ? 'math' : 'pinyin', 'question' => 'this is book ' . $i, 'answer' => 'author ' . $i, 'result' => $i % 5 + 1, 'is_correct' => true, 'created_at' => date("Y-m-d", $timestamp)]);
     }
   }
 }

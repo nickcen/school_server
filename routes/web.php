@@ -11,5 +11,8 @@
 |
 */
 
-$router->get('/questions', 'QuestionsController@index');
-$router->post('/questions', 'QuestionsController@store');
+$api = app('Dingo\Api\Routing\Router');
+$api->version('v1', ['namespace' => 'App\Http\Controllers'], function($api){
+  $api->get('/questions', 'QuestionsController@index');
+  $api->post('/questions', 'QuestionsController@store');
+});
