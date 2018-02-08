@@ -11,6 +11,5 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+$router->get('/questions', 'QuestionsController@index');
+$router->post('/questions', 'QuestionsController@store');
