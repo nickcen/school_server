@@ -15,7 +15,7 @@ class QuestionsSeeder extends Seeder
 
       $timestamp = mt_rand($start, $end);
 
-      Question::create([ 'kind' => ['math1', 'pinyin1', 'pinyin2'][$i % 3], 'question' => 'this is book ' . $i, 'answer' => 'author ' . $i, 'result' => $i % 5 + 1, 'is_correct' => true, 'created_at' => date("Y-m-d", $timestamp)]);
+      Question::create([ 'kind' => $i % 3, 'question' => 'this is book ' . $i, 'answer' => 'author ' . $i, 'result' => $i % 5 + 1, 'is_correct' => true, 'created_at' => date("Y-m-d", $timestamp)]);
     }
   }
 }

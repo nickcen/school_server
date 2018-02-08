@@ -13,7 +13,7 @@ class QuestionsController extends Controller
     $from_date = $request->input('from_date');
     $to_date = $request->input('to_date');
 
-    $questions = Question::whereBetween('created_at', [$from_date, $to_date])->orderBy('created_at', 'asc')->get();
+    $questions = Question::where('is_correct', 1)->whereBetween('created_at', [$from_date, $to_date])->orderBy('created_at', 'asc')->get();
     return $this->collection($questions, new QuestionTransformer);
   }
 
