@@ -16,6 +16,7 @@ class QuestionTransformer extends Fractal\TransformerAbstract
             'answer' => $question->answer,
             'result' => $question->result,
             'is_correct' => $question->is_correct, 
+            'score' => $question->score, 
             'date' => $question->created_at->toDateString()
         ];
     } 

@@ -30,6 +30,6 @@ class QuestionsController extends Controller
   }
 
   private function question_param(Request $request){
-    return $request->only('question.kind', 'question.question', 'question.answer', 'question.result', 'question.is_correct');
+    return $request->only('question.kind', 'question.question', 'question.answer', 'question.result', 'question.is_correct', 'question.score');
   }
 }
